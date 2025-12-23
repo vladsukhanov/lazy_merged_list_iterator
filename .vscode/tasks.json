@@ -1,0 +1,86 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "1. CMake Configure",
+            "detail": "Generates the build files via CMake",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S", "${workspaceFolder}",
+                "-B", "${workspaceFolder}/build",
+                "-G", "Unix Makefiles",
+                "-DCMAKE_BUILD_TYPE=Debug" // is specified to use debugger
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "2. CMake Build",
+            "detail": "Compiles the project",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "${workspaceFolder}/build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "3. Run Executable",
+            "detail": "Runs the compiled executable file",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/task_siber_systems.exe",
+            "problemMatcher": [],
+            "icon": {
+                "id": "play",
+                "color": "terminal.ansiBlue"
+            }
+        },
+        {
+            "label": "4. Run Tests",
+            "detail": "Runs the compiled unit tests",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/test/task_siber_systems_test.exe",
+            "args": [
+                "--gtest_color=1"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
+            "label": "5. Clean Project",
+            "detail": "Removes build artifacts from the build directory",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "${workspaceFolder}/build",
+                "--target", "clean"
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
